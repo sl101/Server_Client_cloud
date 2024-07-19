@@ -1,0 +1,13 @@
+body {
+  color:  var(--black-color);
+}
+
+.container {
+  width: min(100%, 1950px);
+	padding-inline: 15px;
+	margin-inline: auto;
+}
+
+.page{
+	padding-block: 50px;
+}

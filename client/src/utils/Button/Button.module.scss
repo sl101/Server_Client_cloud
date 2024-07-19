@@ -1,0 +1,26 @@
+.wrapper{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+ .btn{
+	height: 36px;
+	padding-block: 6px;
+	padding-inline: 26px;
+	font-weight: 600;
+	font-size: 18px;
+	border: 1px solid var(--primary-color);
+	border-radius: 6px;
+
+	background-color: var(--white-color);
+	color: var(--secondary-color);
+	cursor: pointer;
+	transition: all .4s ease-out;
+ }
+
+ @media (hover: hover) {
+  .btn:hover {
+    background-color: var(--black-color);
+  }
+}

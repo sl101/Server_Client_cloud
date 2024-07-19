@@ -1,0 +1,35 @@
+.header{
+	background-color: var(--black-color);
+	color: var(--white-color);
+	padding-block: 20px;
+
+	&__content{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 15px;
+	}
+
+	&__logo {
+		color: var(--secondary-color);
+	}
+
+	&__auth{
+		flex: 0 0 auto;
+		color: var(--secondary-color);
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+}
+
+.navbar{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 30px;
+}
+
+.navbar li{
+	flex: 0 0 auto;
+}

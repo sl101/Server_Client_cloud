@@ -1,0 +1,28 @@
+.label{
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap:20px;
+
+	&__value{
+		flex: 0 0 auto;
+		color: var(--primary-light);
+		font-size: 20px;
+	}
+
+}
+
+.input {
+	width: 100%;
+	height: 36px;
+	padding-block: 6px;
+	padding-inline: 16px;
+	border: 1px solid var(--primary-color);
+	border-radius: 6px;
+
+}
+
+.input::placeholder{
+	color: var(--primary-light);
+}
