@@ -2,6 +2,13 @@ body {
   color:  var(--black-color);
 }
 
+#root{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	min-height: 100vh;
+}
+
 .container {
   width: min(100%, 1950px);
 	padding-inline: 15px;
@@ -9,5 +16,6 @@ body {
 }
 
 .page{
+	flex: 1 1 100%;
 	padding-block: 50px;
 }

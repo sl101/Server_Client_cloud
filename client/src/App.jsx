@@ -1,38 +1,22 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Header, Footer } from "./components";
-import { Home, About, Contacts, Auth, Registration } from "./pages";
+import { Home, About, Contacts, Login, Registration } from "./pages";
 
 function App() {
-	const routes = [
-		{
-			path: "/",
-			Component: Home,
-		},
-		{
-			path: "/about",
-			Component: About,
-		},
-		{
-			path: "/contacts",
-			Component: Contacts,
-		},
-		{
-			path: "/auth",
-			Component: Auth,
-		},
-		{
-			path: "/registration",
-			Component: Registration,
-		},
 
-	];
-	const router = createBrowserRouter(routes, {
-		basename: "/",
-	});
 	return (
 		<>
 			<Header />
-			<RouterProvider router={router} />
+			<Routes>
+				<Route path="/">
+					<Route index element={<Home />} />
+					<Route path="about" element={<About />} />
+					<Route path="contacts" element={<Contacts />} />
+					<Route path="registration" element={<Registration />} />
+					<Route path="login" element={<Login />} />
+				</Route>
+			</Routes>
+			<Footer />
 		</>
 	);
 }

@@ -1,26 +1,36 @@
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { logout } from "../../reducers/userReducer";
 import s from './Header.module.scss';
 
 export const Header = () => {
+
+	const dispatch = useDispatch();
+	const isAuth = useSelector(state => state.user.isAuth);
 
 	return (
 		<div className={s.header}>
 			<div className="container">
 				<div className={s.header__content}>
-					<div className={s.header__logo}>Logo</div>
+					<NavLink to="/" className={s.header__logo}>Logo</NavLink>
 					<ul className={s.navbar}>
 						<li>
-							<a href="/">Home</a>
+							<NavLink to="/">Home</NavLink>
 						</li>
 						<li>
-							<a href="/about">About</a>
+							<NavLink to="/about">About</NavLink>
 						</li>
 						<li>
-							<a href="/contacts">Contacts</a>
+							<NavLink to="/contacts">Contacts</NavLink>
 						</li>
 					</ul>
-					<div className={s.header__auth}>
-						<a href="/auth">Login</a>
-						<a href="/registration">Registration</a>
+					<div className={`${s.header__auth} auth`}>
+
+						{!isAuth ?
+							<NavLink className={s.auth__btn} to="/login">Login</NavLink>
+							: <button className={s.auth__btn} type="button" onClick={() => dispatch(logout())}>Logout</button>}
+						{!isAuth ? <NavLink className={s.auth__btn} to="/registration">Registration</NavLink> : ''}
+
 					</div>
 				</div>
 			</div>

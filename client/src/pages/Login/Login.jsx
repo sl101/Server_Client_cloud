@@ -1,35 +1,26 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Input, Button } from "../../utils";
-import s from './Auth.module.scss';
+import { login } from "../../actions/user";
+import s from './Login.module.scss';
 
-export const Auth = () => {
+export const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const url = "http://localhost:5000/api/login";
+	const dispatch = useDispatch();
 
 	const fetchAuth = async (e) => {
 		e.preventDefault();
-		await fetch(url,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({ email, password })
-			}
-		)
-			.then(resp => resp.json())
-			.then(data => console.log(data));
-
+		dispatch(login(JSON.stringify({ email, password })));
 	};
 
 	return (
-		<div className={`${s.auth} page`}>
+		<div className={`${s.login} page`}>
 			<div className="container">
-				<div className={s.auth__content}>
+				<div className={s.login__content}>
 					<h1>Login</h1>
-					<form onSubmit={fetchAuth} className={s.auth__form}>
+					<form onSubmit={fetchAuth} className={s.login__form}>
 						<Input
 							label='E-mail: '
 							value={email}

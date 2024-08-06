@@ -4,8 +4,10 @@
 	padding-block: 20px;
 
 	&__content{
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		//justify-content: space-between;
+		grid-template-columns: 1fr 4fr 1fr;
+		grid-template-rows: 1fr;
 		align-items: center;
 		gap: 15px;
 	}
@@ -15,21 +17,28 @@
 	}
 
 	&__auth{
-		flex: 0 0 auto;
 		color: var(--secondary-color);
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
 		gap: 20px;
 	}
 }
 
 .navbar{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
 }
 
 .navbar li{
 	flex: 0 0 auto;
+}
+
+.auth{
+	//flex: 0 0 auto;
+	&__btn{
+		cursor: pointer;
+	}
 }
