@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { setUser } from "../reducers/userReducer";
 
 // TODO: put url to .env
@@ -36,4 +37,19 @@ export const login = (body) => {
 			});
 	};
 
+};
+
+export const auth = () => {
+	return async dispatch => {
+		try {
+			const response = await axios.get(`${url}auth`,
+				{ headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}` } }
+			);
+			dispatch(setUser(response.data.user));
+			localStorage.setItem('token', JSON.stringify(response.data.token));
+		} catch (e) {
+			console.log("🚀 ~ auth ~ error:", e.response);
+			localStorage.removeItem('token');
+		}
+	};
 };

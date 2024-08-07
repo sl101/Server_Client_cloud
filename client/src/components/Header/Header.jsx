@@ -2,11 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../reducers/userReducer";
 import s from './Header.module.scss';
+import { useEffect } from "react";
+import { auth } from "../../actions/user";
 
 export const Header = () => {
 
 	const dispatch = useDispatch();
 	const isAuth = useSelector(state => state.user.isAuth);
+
+	useEffect(() => {
+		dispatch(auth());
+	}, [isAuth]);
 
 	return (
 		<div className={s.header}>
