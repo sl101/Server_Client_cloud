@@ -21,22 +21,22 @@ export const register = async (body) => {
 export const login = (body) => {
 
 	return async dispatch => {
-		await fetch(`${url}login`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body
-			}
-		)
-			.then(resp => resp.json())
-			.then(data => {
-				dispatch(setUser(data));
-				localStorage.setItem("token", JSON.stringify(data.token));
-			});
-	};
+		const response = await fetch(`${url}login`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body
+		});
 
+		const status = response.status;
+		const data = await response.json();
+
+		dispatch(setUser(data));
+		localStorage.setItem("token", JSON.stringify(data.token));
+
+		return status;
+	};
 };
 
 export const auth = () => {

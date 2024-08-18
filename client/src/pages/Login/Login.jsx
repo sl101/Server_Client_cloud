@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Input, Button } from "../../utils";
 import { login } from "../../actions/user";
+import { useNavigate } from "react-router-dom";
 import s from './Login.module.scss';
 
 export const Login = () => {
@@ -9,10 +10,18 @@ export const Login = () => {
 	const [password, setPassword] = useState('');
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const fetchAuth = async (e) => {
 		e.preventDefault();
-		dispatch(login(JSON.stringify({ email, password })));
+		try {
+			const status = await dispatch(login(JSON.stringify({ email, password })));
+			if (status === 200) {
+				navigate('/disk');
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
 	};
 
 	return (

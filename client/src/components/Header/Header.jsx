@@ -1,18 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../reducers/userReducer";
 import s from './Header.module.scss';
-import { useEffect } from "react";
-import { auth } from "../../actions/user";
 
-export const Header = () => {
+export const Header = ({ isAuth }) => {
 
 	const dispatch = useDispatch();
-	const isAuth = useSelector(state => state.user.isAuth);
+	const navigate = useNavigate();
 
-	useEffect(() => {
-		dispatch(auth());
-	}, [isAuth]);
+	const fetchLogout = async () => {
+		dispatch(logout());
+		navigate('/login');
+	};
 
 	return (
 		<div className={s.header}>
@@ -29,12 +29,19 @@ export const Header = () => {
 						<li>
 							<NavLink to="/contacts">Contacts</NavLink>
 						</li>
+						{!isAuth ?
+							""
+							:
+							<li>
+								<NavLink to="/disk">Disk</NavLink>
+							</li>
+						}
 					</ul>
 					<div className={`${s.header__auth} auth`}>
 
 						{!isAuth ?
 							<NavLink className={s.auth__btn} to="/login">Login</NavLink>
-							: <button className={s.auth__btn} type="button" onClick={() => dispatch(logout())}>Logout</button>}
+							: <button className={s.auth__btn} type="button" onClick={fetchLogout}>Logout</button>}
 						{!isAuth ? <NavLink className={s.auth__btn} to="/registration">Registration</NavLink> : ''}
 
 					</div>
