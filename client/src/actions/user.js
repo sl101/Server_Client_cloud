@@ -21,21 +21,28 @@ export const register = async (body) => {
 export const login = (body) => {
 
 	return async dispatch => {
-		const response = await fetch(`${url}login`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body
-		});
+		try {
+			const response = await fetch(`${url}login`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body
+			});
 
-		const status = response.status;
-		const data = await response.json();
+			const status = response.status;
 
-		dispatch(setUser(data));
-		localStorage.setItem("token", JSON.stringify(data.token));
+			if (status === 200) {
 
-		return status;
+				const data = await response.json();
+				dispatch(setUser(data));
+				localStorage.setItem("token", JSON.stringify(data.token));
+			}
+			return status;
+		} catch (error) {
+			console.log("🚀 ~ login ~ error:", error.message);
+		}
+
 	};
 };
 
@@ -48,7 +55,7 @@ export const auth = () => {
 			dispatch(setUser(response.data.user));
 			localStorage.setItem('token', JSON.stringify(response.data.token));
 		} catch (e) {
-			console.log("🚀 ~ auth ~ error:", e.response);
+			console.log("🚀 ~ auth ~ error:", e.message);
 			localStorage.removeItem('token');
 		}
 	};
