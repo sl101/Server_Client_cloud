@@ -42,7 +42,9 @@ export const Login = () => {
 							setValue={setPassword}
 							type='password'
 							placeholder='password' />
-						<Button text='Sing in' type='submit' />
+						<div className={s.btn__wrapper}>
+							<Button text='Sing in' type='submit' content="login" />
+						</div>
 
 					</form>
 				</div>

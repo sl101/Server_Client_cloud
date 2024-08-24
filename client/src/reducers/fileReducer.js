@@ -3,7 +3,7 @@ const SET_CURRENT_DIR = "SET_CURRENT_DIR";
 
 const defaultState = {
 	files: [],
-	currenDir: null
+	currentDir: null
 };
 
 export default function fileReducer(state = defaultState, action) {

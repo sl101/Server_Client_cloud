@@ -5,17 +5,41 @@ import { setUser } from "../reducers/userReducer";
 const url = "http://localhost:5000/api/";
 
 export const register = async (body) => {
-	await fetch(`${url}registration`,
-		{
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body
+	return async dispatch => {
+		try {
+			const response = await fetch(`${url}registration`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body
+				}
+			);
+			const status = response.status;
+
+			if (status === 200) {
+				const data = await response.json();
+				dispatch(setUser(data));
+				localStorage.setItem("token", JSON.stringify(data.token));
+			}
+			return status;
+		} catch (error) {
+			console.log("🚀 ~ register ~ error:", error.message);
 		}
-	)
-		.then(resp => resp.json())
-		.then(data => console.log(data));
+
+		//await fetch(`${url}registration`,
+		//	{
+		//		method: "POST",
+		//		headers: {
+		//			"Content-Type": "application/json"
+		//		},
+		//		body
+		//	}
+		//)
+		//	.then(resp => resp.json())
+		//	.then(data => console.log(data));
+	};
 };
 
 export const login = (body) => {
@@ -33,7 +57,6 @@ export const login = (body) => {
 			const status = response.status;
 
 			if (status === 200) {
-
 				const data = await response.json();
 				dispatch(setUser(data));
 				localStorage.setItem("token", JSON.stringify(data.token));
