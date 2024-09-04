@@ -6,10 +6,9 @@ class FileService {
 
 	createDir(file) {
 		const filePath = `${config.get('filePath')}\\${file.user}\\${file.path}`;
-		//const filePath = path.join(__dirname, `../files/${file.user}/${file.path}`);
 		return new Promise((resolve, reject) => {
 			try {
-				if (!fs.existsSync(file)) {
+				if (!fs.existsSync(filePath)) {
 					fs.mkdirSync(filePath);
 					return resolve({ message: 'File was created' });
 				} else {

@@ -18,4 +18,10 @@ body {
 .page{
 	flex: 1 1 100%;
 	padding-block: 50px;
+
+	&__title{
+		width: 100%;
+		text-align: center;
+		color: var(--primary-color);
+	}
 }

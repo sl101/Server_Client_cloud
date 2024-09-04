@@ -2,6 +2,7 @@ const { Schema, model, ObjectId } = require("mongoose");
 
 const File = new Schema({
 	name: { type: String, require: true },
+	date: { type: Date, default: Date.now() },
 	type: { type: String, require: true },
 	accessLink: { type: String },
 	size: { type: Number, default: 0 },
