@@ -23,7 +23,7 @@ function App() {
 					<Route path="contacts" element={<Contacts />} />
 					<Route path="registration" element={<Registration />} />
 					<Route path="login" element={<Login />} />
-					<Route path="disk" element={<Disk />} />
+					<Route path="disk" element={<Disk isAuth={isAuth} />} />
 				</Route>
 			</Routes>
 

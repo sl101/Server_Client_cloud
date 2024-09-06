@@ -2,7 +2,7 @@ import s from './FileItem.module.scss';
 import { IoIosFolder, IoIosDocument } from "react-icons/io";
 
 export const FileItem = ({ file }) => {
-	console.log("🚀 ~ FileItem ~ file:", file);
+	//console.log("🚀 ~ FileItem ~ file:", file);
 	const { childs, date, name, path, size, type, user, _id } = { ...file };
 	const dateObj = new Date(date);
 	return (

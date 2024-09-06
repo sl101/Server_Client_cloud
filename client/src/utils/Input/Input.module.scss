@@ -12,6 +12,9 @@
 	}
 
 }
+.popup{
+	gap: 0;
+}
 
 .input {
 	width: 100%;
@@ -26,3 +29,4 @@
 .input::placeholder{
 	color: var(--primary-light);
 }
+

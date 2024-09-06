@@ -1,8 +1,8 @@
 import s from './Input.module.scss';
 
-export const Input = ({ value, type, label, setValue, placeholder }) => {
+export const Input = ({ value, type, label, setValue, placeholder, content }) => {
 	return (
-		<label className={s.label}>
+		<label className={`${s.label} ${s[content]}`}>
 			<span
 				className={s.label__value}>
 				{label}
