@@ -4,20 +4,36 @@
 	grid-template-columns: 2fr 1fr 1fr;
 	column-gap: 15px;
 	border-bottom: 2px solid var(--primary-color);
-
+	transition: all .4s ease-in;
+	
 	&__view{
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		gap: 15px;          
+		gap: 15px; 
+		overflow: hidden;
+	}
+
+	&__view p{
+		display: block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	&:hover {
 		color: var(--primary-color);
 		cursor: pointer;
 	}
+
+	& path{
+		transition: all .4s ease-in;
+	}
+
 	&:hover path{
 		scale: 1.4;
 	}
+	&__view:hover p{
+		overflow: visible;
+	}
 }
-

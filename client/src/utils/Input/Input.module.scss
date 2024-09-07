@@ -11,6 +11,16 @@
 		font-size: 20px;
 	}
 
+	&.upload {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 2px dashed var(--primary-color);
+		padding: 8px;
+		border-radius: 6px;
+	}
+
 }
 .popup{
 	gap: 0;
@@ -23,7 +33,11 @@
 	padding-inline: 16px;
 	border: 1px solid var(--primary-color);
 	border-radius: 6px;
+	
+	&.upload {
+		display: none;
 
+	}
 }
 
 .input::placeholder{

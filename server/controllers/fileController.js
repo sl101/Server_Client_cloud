@@ -53,10 +53,13 @@ class FileController {
 			user.usedSpace = user.usedSpace + file.size;
 
 			let path;
+			//console.log("🚀 ~ FileController ~ uploadFile ~ parent:", parent);
 			if (parent) {
-				path = `${config.get('filePath')}\\${user._id}\\${parent.path}\\${file.name}`;
+				path = `${config.get('filePath')}\\files\\${user._id}\\${parent.path}\\${file.name}`;
+				//console.log("🚀 ~ FileController ~ uploadFile ~ path:", path);
 			} else {
-				path = `${config.get('filePath')}\\${user._id}\\${file.name}`;
+				path = `${config.get('filePath')}\\files\\${user._id}\\${file.name}`;
+				//console.log("🚀 ~ FileController ~ uploadFile ~ path:", path);
 			}
 
 			if (fs.existsSync(path)) {

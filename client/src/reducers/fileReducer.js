@@ -7,6 +7,7 @@ const POP_FROM_STACK = "POP_FROM_STACK";
 const defaultState = {
 	files: [],
 	currentDir: null,
+	//currentDir: {name: null, id: null},
 	dirStack: []
 };
 

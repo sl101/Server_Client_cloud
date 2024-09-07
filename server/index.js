@@ -12,7 +12,7 @@ app.use(fileUpload({}));
 app.use(corsMiddleware);
 app.use(express.json());
 app.use("/api", authRouter);
-app.use("/api", fileRouter);
+app.use("/api/files", fileRouter);
 
 const start = async () => {
 	try {

@@ -10,20 +10,27 @@ export const FileItem = ({ file }) => {
 
 	const dateObj = new Date(date);
 
-	const openDirHandler = () => {
-		dispatch(pushToStack(currentDir));
-		dispatch(setCurrentDir(_id));
+	const openDirHandler = (type) => {
+		if (type === 'dir') {
+			dispatch(pushToStack(currentDir));
+			//dispatch(setCurrentDir(name));
+			dispatch(setCurrentDir(_id));
+		} else {
+			//TODO: File is not a directory
+		}
 	};
 
 	return (
 		<li
 			className={s.file}
-			onClick={type === 'dir' ? () => openDirHandler() : ''} >
+			onClick={() => openDirHandler(type)} >
 			<div className={s.file__view}>
-				{type === "dir" ?
-					<IoIosFolder /> :
-					<IoIosDocument />
-				}
+				<div className={s.file__icon}>
+					{type === "dir" ?
+						<IoIosFolder /> :
+						<IoIosDocument />
+					}
+				</div>
 				<p>{name}</p>
 			</div>
 			<p>{`${String(dateObj.getDate()).padStart(2, '0')}.${String(dateObj.getMonth() + 1).padStart(2, '0')}.${dateObj.getFullYear()}`}</p>
