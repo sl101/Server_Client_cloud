@@ -9,11 +9,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #999;
+	background-color: var(--primary-shadow);
 
 	&__content{
 		width: 60%;
-		background-color: white;
+		background-color: var(--white-color);
 		padding: 20px;
 		display: flex;
 		flex-direction: column;

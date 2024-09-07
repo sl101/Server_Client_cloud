@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import s from './FileList.module.scss';
 import { FileItem } from "../FileItem/FileItem";
+import s from './FileList.module.scss';
 
 export const FileList = () => {
 
@@ -13,7 +13,7 @@ export const FileList = () => {
 				<li >Size</li>
 			</ul>
 			<ul className={s.filelist__files}>
-				{files.map(file => <FileItem key={file.id} file={file} />)}
+				{files.map(file => <FileItem key={file._id} file={file} />)}
 			</ul>
 		</div>
 	);

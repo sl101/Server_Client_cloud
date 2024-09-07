@@ -1,9 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getFiles } from "../../actions/file";
 import { FileList, Popup } from "../../components";
 import { Button } from "../../utils";
-import { useNavigate } from "react-router-dom";
+import { popFromStack } from "../../reducers/fileReducer";
 import s from './Disk.module.scss';
 
 
@@ -13,7 +14,6 @@ export const Disk = ({ isAuth }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const currentDir = useSelector(state => state.files.currentDir);
-	console.log("🚀 ~ Disk ~ currentDir:", currentDir);
 
 	useEffect(() => {
 		if (!isAuth) {
@@ -25,12 +25,6 @@ export const Disk = ({ isAuth }) => {
 		dispatch(getFiles(currentDir));
 	}, [currentDir]);
 
-	//const createDirHandler = () => {
-	//console.log("Click createDirHandler");
-	//dispatch(setPopupDisplay('flex'));
-	//setIsPopup(!isPopup);
-	//};
-
 	return (
 		<div className={`${s.disk} page`}>
 			<Popup currentDir={currentDir} isPopup={isPopup} setIsPopup={setIsPopup} />
@@ -39,7 +33,11 @@ export const Disk = ({ isAuth }) => {
 				<div className={s.disk__wrapper}>
 					<div className={`${s.disk__controllers} ${s.controllers}`}>
 						<div className={s.controllers__btns}>
-							<Button className={s.disk__back} text="Go back" />
+							{currentDir && <Button
+								className={s.disk__back}
+								text="Go back"
+								onClick={() => dispatch(popFromStack())}
+							/>}
 							<Button
 								className={s.disk__create}
 								onClick={() => setIsPopup(!isPopup)}

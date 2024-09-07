@@ -1,12 +1,24 @@
+import { useDispatch, useSelector } from "react-redux";
 import s from './FileItem.module.scss';
 import { IoIosFolder, IoIosDocument } from "react-icons/io";
+import { pushToStack, setCurrentDir } from "../../reducers/fileReducer";
 
 export const FileItem = ({ file }) => {
-	//console.log("🚀 ~ FileItem ~ file:", file);
 	const { childs, date, name, path, size, type, user, _id } = { ...file };
+	const dispatch = useDispatch();
+	const currentDir = useSelector(state => state.files.currentDir);
+
 	const dateObj = new Date(date);
+
+	const openDirHandler = () => {
+		dispatch(pushToStack(currentDir));
+		dispatch(setCurrentDir(_id));
+	};
+
 	return (
-		<li className={s.file}>
+		<li
+			className={s.file}
+			onClick={type === 'dir' ? () => openDirHandler() : ''} >
 			<div className={s.file__view}>
 				{type === "dir" ?
 					<IoIosFolder /> :
@@ -16,9 +28,6 @@ export const FileItem = ({ file }) => {
 			</div>
 			<p>{`${String(dateObj.getDate()).padStart(2, '0')}.${String(dateObj.getMonth() + 1).padStart(2, '0')}.${dateObj.getFullYear()}`}</p>
 			<p>{size}</p>
-			{/*<ul>
-				{childs.map((child, index) => <li key={index}>{child}</li>)}
-			</ul>*/}
 		</li>
 	);
 }
