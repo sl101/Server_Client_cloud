@@ -1,8 +1,9 @@
 .file{
 	padding-block: 12px 6px;
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr;
+	grid-template-columns: 8fr 2fr 2fr 1fr;
 	column-gap: 15px;
+	align-items: center;
 	border-bottom: 2px solid var(--primary-color);
 	transition: all .4s ease-in;
 	
@@ -26,14 +27,30 @@
 		cursor: pointer;
 	}
 
-	& path{
-		transition: all .4s ease-in;
+	&__icon{
+		width: 20px;
+		height: 20px;
+
+		& path{
+			transition: all .4s ease-in;
+		}
+	
+		&:hover path{
+			scale: 1.4;
+		}
+		
 	}
 
-	&:hover path{
-		scale: 1.4;
-	}
 	&__view:hover p{
 		overflow: visible;
 	}
+
+	&__actions {
+		justify-self: end;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 10px;
+	}
+
 }
