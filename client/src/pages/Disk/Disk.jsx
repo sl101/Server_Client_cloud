@@ -11,6 +11,7 @@ import s from './Disk.module.scss';
 export const Disk = ({ isAuth }) => {
 
 	const [isPopup, setIsPopup] = useState(false);
+	const [dragEnter, setDragEnter] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const currentDir = useSelector(state => state.files.currentDir);
@@ -30,8 +31,34 @@ export const Disk = ({ isAuth }) => {
 		files.forEach(file => dispatch(uploadFile(file, currentDir)));
 	};
 
-	return (
-		<div className={`${s.disk} page`}>
+	function dragEnterHandler(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		setDragEnter(true);
+	}
+
+	function dragLeaveHandler(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		setDragEnter(false);
+	}
+
+	function dropHandler(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		let files = [...event.dataTransfer.files];
+		files.forEach(file => dispatch(uploadFile(file, currentDir)));
+		setDragEnter(false);
+	}
+
+
+	return (!dragEnter ?
+		<div className={`${s.disk} page`}
+			onDrop={dropHandler}
+			onDragEnter={dragEnterHandler}
+			onDragLeave={dragLeaveHandler}
+			onDragOver={dragEnterHandler}
+		>
 			<Popup currentDir={currentDir} isPopup={isPopup} setIsPopup={setIsPopup} />
 			<div className="container">
 				{/*<h1 className="page__title">Folder name: {currentDir} </h1>*/}
@@ -67,7 +94,16 @@ export const Disk = ({ isAuth }) => {
 					<FileList />
 				</div>
 			</div>
-		</div>
+		</div> :
+		<div className={s.drop_area}>
+			<div className={s.drop_area__content}
+				onDrop={dropHandler}
+				onDragEnter={dragEnterHandler}
+				onDragLeave={dragLeaveHandler}
+				onDragOver={dragEnterHandler} >
+				Drag files here...
+			</div >
+		</div >
 	);
 };
 
